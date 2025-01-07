@@ -18,7 +18,7 @@ const firstPromise = new Promise((resolve, reject) => {
   });
 
   setTimeout(() => {
-    reject(new Error('First promise was rejected'));
+    reject('First promise was rejected');
   }, 3000);
 });
 
@@ -44,7 +44,7 @@ const thirdPromise = new Promise((resolve) => {
     }
   });
 
-  document.addEventListener('', () => {
+  document.addEventListener('dblclick', () => {
     resolve();
   });
 
@@ -59,8 +59,8 @@ const thirdPromise = new Promise((resolve) => {
 
 firstPromise
   .then(() => createMessage(`First promise was resolved`, 'success'))
-  .catch((text) => createMessage(text, 'warning'));
+  .catch((text) => createMessage(text, 'error'));
 
-secondPromise.then(createMessage(`Second promise was resolved`, 'success'));
+secondPromise.then(() => createMessage(`Second promise was resolved`, 'success'));
 
-thirdPromise.then(createMessage(`Third promise was resolved`, 'success'));
+thirdPromise.then(() => createMessage(`Third promise was resolved`, 'success'));
